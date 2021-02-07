@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+
+    <title>Escolha uma opção</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <h1 class="text-center">Escolha uma opção</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row mt-5">
+            <div class="col-lg-4 mt-2 mb-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Criar questionário</h6>
+                        <p class="card-text">Deseja criar um questionário novo?</p>
+                        <a href="{% url 'create_question' %}" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-2 mb-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Responder questionário</h6>
+                        <p class="card-text">Responder um questionário criado</p>
+                        <a href="{% url 'question_list' %}" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-2 mb-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Ver questionários respondidos</h6>
+                        <p class="card-text">Ver respostas</p>
+                        <a href="{% url 'answer_list' %}" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  </div>
+
+  <script src="{% static 'bootstrap.js' %}"></script>
+
+  </body>
+</html>

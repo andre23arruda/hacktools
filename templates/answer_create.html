@@ -1,0 +1,46 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+
+    <title>Responder questionário</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <h1 class="text-center">Responder questionário</h1>
+
+        <form id="create-form" method="post" data-answerform>
+            <h3>{{ question.title }}</h3>
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="col-xs-12 mt-2 mb-2">
+                  {{ field.label }}
+                  {{ field }}
+              </div>
+            {% endfor %}
+			{% for q in questions %}
+				<div class="col-xs-12 mt-2 mb-2">
+					<label for="question_{{ forloop.counter }}">{{ q }}</label>
+					<input data-answer id="question_{{ forloop.counter }}" type="text" name="question_{{ forloop.counter }}" class="form-control">
+				</div>
+            {% endfor %}
+            <br/>
+            <br/>
+            <button class="btn btn-primary">Enviar</button>
+			<a class="btn btn-secondary" href="{% url 'index' %}">Voltar</a>
+        </form>
+
+  </div>
+
+  <script src="{% static 'jquery.js' %}"></script>
+  <script src="{% static 'bootstrap.js' %}"></script>
+  <script src="{% static 'pages/answer.js' %}"></script>
+
+  </body>
+</html>

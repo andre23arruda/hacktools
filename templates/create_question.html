@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+
+    <title>Criar questionário</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <h1 class="text-center">Novo questionário</h1>
+
+        <form id="create-form" action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="col-xs-12 mt-2 mb-2">
+                  {{ field.label }}
+                  {{ field }}
+                  {{ field.help_text }}
+              </div>
+            {% endfor %}
+            <br/>
+            <br/>
+            <button class="btn btn-primary">Enviar</button>
+			<a class="btn btn-secondary" href="{% url 'index' %}">Voltar</a>
+        </form>
+
+  </div>
+
+  <script src="{% static 'bootstrap.js' %}"></script>
+
+  </body>
+</html>
