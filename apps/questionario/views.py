@@ -41,8 +41,8 @@ def answer_create(request, question_id):
             user=request.POST['user'],
             question=question,
             answers=json.loads(request.POST['answers']),
-            latitude=request.POST['latitude'],
-            longitude=request.POST['longitude'],
+            latitude=request.POST['latitude'][:9],
+            longitude=request.POST['longitude'][:9],
         )
         messages.success(request, f'Salvo com sucesso!')
         context = {"status":"success", "message":"success"}
